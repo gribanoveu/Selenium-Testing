@@ -1,0 +1,28 @@
+<configuration>
+    <timestamp key="bySecond" datePattern="dd.MM.yy_HH.mm"/>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern> [ %highlight(%-5level)] %d{dd.MM.yy - HH:mm:ss} [%thread] [class: %logger{0}] [method: %M] | %yellow(%m%n)</pattern>
+        </encoder>
+    </appender>
+
+    <timestamp key="byDate" datePattern="dd.MM.yy"/>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender" additivity="false">
+        <file>logs/${byDate}/log_${bySecond}.log</file>
+        <append>true</append>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>[ %(%-5level)] %d{dd.MM.yy - HH:mm:ss} [%thread] [class: %logger{0}] [method: %M] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.baeldung.logback.tests" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>

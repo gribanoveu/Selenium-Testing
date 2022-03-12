@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parent_Suite">
+    <listeners>
+        <listener class-name="selenium.service.testng.ExecutionListener"/>
+        <listener class-name="selenium.service.testng.TestErrorListener"/>
+    </listeners>
+
+    <test name="ItestReporter">
+        <classes>
+            <class name="tests.GoogleTests" />
+        </classes>
+    </test>
+</suite>
