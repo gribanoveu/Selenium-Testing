@@ -36,7 +36,7 @@ public class Edge {
             }
         } catch (MalformedURLException e) {
             log.error("Получен некорректный URL-адресс, запуск тестов на локальной машине!");
-            return new EdgeDriver(options);
+            throw new RuntimeException("Некорректный адрес удаленной машины!");
         }
 
         return new EdgeDriver(options);

@@ -2,6 +2,7 @@ package selenium.base;
 
 
 import selenium.helpers.ActionHelper;
+import selenium.helpers.CookieHelper;
 import selenium.helpers.JavaScriptHelper;
 import selenium.helpers.WaitHelper;
 
@@ -27,5 +28,10 @@ public abstract class BasePage {
     /** Получение заголовка текущей страницы */
     public static String getPageTitle() {
         return Driver.getInstance().getTitle();
+    }
+
+    /** Получение URL текущей страницы */
+    public static String getPageURL() {
+        return Driver.getInstance().getCurrentUrl();
     }
 }

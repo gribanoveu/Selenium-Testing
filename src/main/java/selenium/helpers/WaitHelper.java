@@ -1,5 +1,6 @@
 package selenium.helpers;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -54,5 +55,10 @@ public class WaitHelper {
     public static void firstWebElementMustBe(By webElement, String text) {
         wait.until((ExpectedCondition<Boolean>) webDriver ->
                 webDriver.findElement(webElement).getText().contains(text));
+    }
+
+    /** Ожидание появления всплывающего алерта */
+    public static void waitWhenAlertIsPresents() {
+         wait.until(ExpectedConditions.alertIsPresent());
     }
 }

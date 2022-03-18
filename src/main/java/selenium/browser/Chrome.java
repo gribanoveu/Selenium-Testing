@@ -36,7 +36,7 @@ public class Chrome {
             }
         } catch (MalformedURLException e) {
             log.error("Получен некорректный URL-адресс, запуск тестов на локальной машине!");
-            return new ChromeDriver(options);
+            throw new RuntimeException("Некорректный адрес удаленной машины!");
         }
 
         return new ChromeDriver(options);

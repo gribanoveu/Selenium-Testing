@@ -36,7 +36,7 @@ public class Firefox {
             }
         } catch (MalformedURLException e) {
             log.error("Получен некорректный URL-адресс, запуск тестов на локальной машине!");
-            return new FirefoxDriver(options);
+            throw new RuntimeException("Некорректный адрес удаленной машины!");
 
         }
 
