@@ -1,7 +1,7 @@
 package selenium.enums;
 
 public enum RemoteStand {
-    REMOTE_URL("http://172.17.57.21:4444");
+    REMOTE_URL("http://youip:4444");
 
     private final String remoteUrl;
 

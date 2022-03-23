@@ -1,15 +1,13 @@
 package tests;
 
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.By;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.GoogleMainPage;
 import pages.GoogleResultPage;
 import selenium.base.BaseTest;
-import selenium.helpers.CookieHelper;
-import selenium.helpers.NavigateHelper;
-import selenium.helpers.ScreenshotHelper;
-import selenium.helpers.WindowHelper;
+import selenium.helpers.*;
 import selenium.service.testng.RetryListener;
 import selenium.service.testng.TestErrorListener;
 
@@ -45,6 +43,5 @@ public class GoogleTests extends BaseTest {
     public void open() {
         NavigateHelper.openPage("https://ya.ru");
         log.info(WindowHelper.getWindowHandle());
-        ScreenshotHelper.getPageScreenshot("страница");
     }
 }
