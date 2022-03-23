@@ -13,11 +13,11 @@ public class CookieHelper {
 
     /** Логирование доступных куки */
     public static void printBasicCookieInfo() {
-        log.info("--- Получены следующие куки (имя/значение): ---");
+        log.info("Получены следующие куки (имя/значение): ");
         for (Cookie cookie: Driver.getInstance().manage().getCookies()) {
-            log.info("Name: " + cookie.getName() + " | Value: " + cookie.getValue());
+            log.info(" - " + cookie.getName() + " / " + cookie.getValue());
         }
-        log.info("--- Конец полученных куки ---");
+        log.info("Конец полученных куки ");
     }
 
     /** Получение значения куки по его имени */
@@ -27,4 +27,33 @@ public class CookieHelper {
         return cookieValue;
     }
 
+    /** Добавление куки, передается имя и значение */
+    public static void addCookie(String cookieName, String cookieValue) {
+        Driver.getInstance().manage().addCookie(new Cookie(cookieName, cookieValue));
+        log.info("Отправлен запрос на добавление куки с именем: '" + cookieName + "' и значением: '" + cookieValue + "'");
+    }
+
+    /** Добавление куки, передается имя и значение */
+    public static void addCookie(Cookie cookie) {
+        Driver.getInstance().manage().addCookie(cookie);
+        log.info("Отправлен запрос на добавление куки");
+    }
+
+    /** Удаление куки */
+    public static void deleteCookie(String cookieName) {
+        Driver.getInstance().manage().deleteCookieNamed(cookieName);
+        log.info("Отправлен запрос на удаление куки с именем: '" + cookieName + "'");
+    }
+
+    /** Удаление куки */
+    public static void deleteCookie(Cookie cookie) {
+        Driver.getInstance().manage().deleteCookie(cookie);
+        log.info("Отправлен запрос на удаление куки");
+    }
+
+    /** Удаление всех куки */
+    public static void deleteAllCookie() {
+        Driver.getInstance().manage().deleteAllCookies();
+        log.info("Отправлен запрос на удаление всех куки");
+    }
 }

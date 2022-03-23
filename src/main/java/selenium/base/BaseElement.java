@@ -39,5 +39,4 @@ public abstract class BaseElement {
     public WebElement getWebElement() {
         return webElement;
     }
-
 }
