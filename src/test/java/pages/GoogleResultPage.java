@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import selenium.base.BasePage;
+import selenium.elements.Alert;
 import selenium.elements.TextBox;
 
 /**

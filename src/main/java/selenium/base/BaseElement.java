@@ -17,10 +17,10 @@ public abstract class BaseElement {
     protected By by;
 
     /** Установка ожидания, по истетечении которого происходит исключение */
-    private static final Duration DURATION_TIMEOUT = Duration.ofSeconds(5);
+    private static final Duration DURATION_TIMEOUT = Duration.ofSeconds(10);
 
     /** Установка ожидания перерыва между повторным поиском */
-    private static final Duration DURATION_SLEEP = Duration.ofSeconds(5);
+    private static final Duration DURATION_SLEEP = Duration.ofSeconds(1);
 
     /**  Базовый элемент
      * @param by - локатор элемента

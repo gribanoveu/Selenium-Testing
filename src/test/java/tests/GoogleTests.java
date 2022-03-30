@@ -38,10 +38,4 @@ public class GoogleTests extends BaseTest {
 
         assertThat(expectedTextValue).contains("Selenium");
     }
-
-    @Test
-    public void open() {
-        NavigateHelper.openPage("https://ya.ru");
-        log.info(WindowHelper.getWindowHandle());
-    }
 }
