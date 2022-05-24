@@ -4,7 +4,7 @@ package selenium.helpers;
 import selenium.base.Driver;
 
 /** Класс для перемещения по страницам */
-public class NavigateHelper {
+public class Navigate {
 
     /** Открытие новой страницы */
     public static void openPage(String URL) {

@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import selenium.base.Driver;
 
 /** Класс для выполняния JavaScript скриптов */
-public class JavaScriptHelper {
+public class JavaScript {
     protected static JavascriptExecutor js;
 
     /** Инициализация исполнителя Js скриптов */

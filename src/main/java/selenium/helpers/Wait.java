@@ -1,6 +1,5 @@
 package selenium.helpers;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -11,13 +10,19 @@ import selenium.base.Driver;
 import java.time.Duration;
 
 /** Класс для ожидания элементов */
-public class WaitHelper {
+public class Wait {
 
     protected static WebDriverWait wait;
 
     /** Установка таймаута ожидания и интервал опроса */
     public static void initWait(Duration timeOut, Duration sleep) {
         wait = new WebDriverWait(Driver.getInstance(), timeOut, sleep);
+    }
+
+
+    public static void visibleAndClickable(By webElement) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(webElement));
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     /** Ожидание наличия элемента по локатору */

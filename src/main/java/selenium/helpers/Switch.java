@@ -5,7 +5,7 @@ import org.openqa.selenium.WindowType;
 import selenium.base.Driver;
 
 /** Класс для переключения окон */
-public class SwitchHelper {
+public class Switch {
 
     /** Переключение на созданное окно */
     public static void switchToExistWindow(String window) {

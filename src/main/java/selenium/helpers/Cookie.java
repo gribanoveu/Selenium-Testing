@@ -1,7 +1,6 @@
 package selenium.helpers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.Cookie;
 import selenium.base.Driver;
 
 /** Класс для работы с куки
@@ -9,12 +8,12 @@ import selenium.base.Driver;
  * created : 16.03.2022, 22:09
  **/
 @Slf4j
-public class CookieHelper {
+public class Cookie {
 
     /** Логирование доступных куки */
     public static void printBasicCookieInfo() {
         log.info("Получены следующие куки (имя/значение): ");
-        for (Cookie cookie: Driver.getInstance().manage().getCookies()) {
+        for (org.openqa.selenium.Cookie cookie: Driver.getInstance().manage().getCookies()) {
             log.info(" - " + cookie.getName() + " / " + cookie.getValue());
         }
         log.info("Конец полученных куки ");
@@ -29,12 +28,12 @@ public class CookieHelper {
 
     /** Добавление куки, передается имя и значение */
     public static void addCookie(String cookieName, String cookieValue) {
-        Driver.getInstance().manage().addCookie(new Cookie(cookieName, cookieValue));
+        Driver.getInstance().manage().addCookie(new org.openqa.selenium.Cookie(cookieName, cookieValue));
         log.info("Отправлен запрос на добавление куки с именем: '" + cookieName + "' и значением: '" + cookieValue + "'");
     }
 
     /** Добавление куки, передается имя и значение */
-    public static void addCookie(Cookie cookie) {
+    public static void addCookie(org.openqa.selenium.Cookie cookie) {
         Driver.getInstance().manage().addCookie(cookie);
         log.info("Отправлен запрос на добавление куки");
     }
@@ -46,7 +45,7 @@ public class CookieHelper {
     }
 
     /** Удаление куки */
-    public static void deleteCookie(Cookie cookie) {
+    public static void deleteCookie(org.openqa.selenium.Cookie cookie) {
         Driver.getInstance().manage().deleteCookie(cookie);
         log.info("Отправлен запрос на удаление куки");
     }

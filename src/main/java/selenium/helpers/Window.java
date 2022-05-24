@@ -7,7 +7,7 @@ import selenium.base.Driver;
 
 /** Класс для взаимодействия с размером и положением окна */
 @Slf4j
-public class WindowHelper {
+public class Window {
 
     /** Минимизация размеров окна */
     public static void minimizeWindow() {

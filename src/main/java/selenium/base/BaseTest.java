@@ -5,12 +5,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import selenium.enums.Browsers;
+import selenium.helpers.Action;
+import selenium.helpers.JavaScript;
+import selenium.helpers.Wait;
+
+import java.time.Duration;
 
 /** Базовый класс для всех тестов.
  * При создании нового теста следует наследоваться от данного класса.
  * Аннотация @Slf4j позволяет использовать логгирование путем вызова метода log.info(), etc */
 @Slf4j
 public abstract class BaseTest {
+
     /** Получение проперти для указания запуска браузера в maven -Dbrowser=firefox.
      * При передаче неверного значения используется значение по умолчанию */
     String browser = System.getProperty("browser", "chrome").toLowerCase();
@@ -20,12 +26,19 @@ public abstract class BaseTest {
       * При передаче неверного значения используется значение по умолчанию */
     String isRemoteDriver = System.getProperty("remote", "false");
 
+    // инициализация ожиданий
+    private static final Duration DURATION_TIMEOUT = Duration.ofSeconds(10);
+    private static final Duration DURATION_SLEEP = Duration.ofSeconds(1);
+
     /** Метод инициализации вебдрайвера, запускается перед выполнением тестов.
      * Получает название браузера.
      * Получает указание запускать ли удаленный вебдрайвер */
     @BeforeTest
     public void run() {
         Driver.setupDriver(Browsers.fromString(browser), Boolean.valueOf(isRemoteDriver));
+        Wait.initWait(DURATION_TIMEOUT, DURATION_SLEEP);
+        JavaScript.initJS();
+        Action.initActions();
         log.info("Драйвер стартовал!");
     }
 

@@ -4,8 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.GoogleMainPage;
-import pages.GoogleResultPage;
 import selenium.base.BaseTest;
 import selenium.helpers.*;
 import selenium.service.testng.RetryListener;
@@ -22,20 +20,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Listeners(TestErrorListener.class)
 public class GoogleTests extends BaseTest {
     private static final String URL = "https://www.google.ru/";
+    public static final String SEARCH_BUTTON = "//*[text()='Картинки']";
 
     @Test(retryAnalyzer = RetryListener.class)
-    public void searchSelenium() {
-        GoogleMainPage googleMainPage = new GoogleMainPage();
-        GoogleResultPage googleResultPage = new GoogleResultPage();
+    public void searchSelenium() throws InterruptedException {
+        Navigate.openPage(URL);
 
-        NavigateHelper.openPage(URL);
-
-        googleMainPage.
-                enterTextInSearchBox("Selenium").
-                pressSearchButton();
-
-        String expectedTextValue = googleResultPage.getCardTitle();
-
-        assertThat(expectedTextValue).contains("Selenium");
+        Action.OneClick.click(By.xpath(SEARCH_BUTTON));
+        Thread.sleep(5000);
     }
 }

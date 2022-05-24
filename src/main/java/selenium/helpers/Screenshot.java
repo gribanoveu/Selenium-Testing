@@ -9,13 +9,9 @@ import selenium.base.Driver;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
-public class ScreenshotHelper {
+public class Screenshot {
 
     /** Сохранение скриншота страницы в папку target (при запуске через mvn clean она очищается).
      * Сохраняется в формате "Заголовок страницы" + "ваше имя" + "id сессии" */

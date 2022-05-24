@@ -2,9 +2,10 @@ package selenium.helpers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Rectangle;
+import org.openqa.selenium.WebElement;
 import selenium.base.Driver;
 
-public class ElementHelper {
+public class Element {
 
     /** Получить ширину элемента
      * @param locator - локатор элемента
