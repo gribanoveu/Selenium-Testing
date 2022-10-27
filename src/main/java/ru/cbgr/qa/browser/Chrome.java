@@ -1,4 +1,4 @@
-package selenium.browser;
+package ru.cbgr.qa.browser;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import selenium.enums.RemoteStand;
+import ru.cbgr.qa.enums.RemoteStand;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,7 +29,6 @@ public class Chrome {
 
         // установка аргументов запуска
         options.addArguments("--incognito");
-        options.addArguments("--start-fullscreen");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", "chrome");

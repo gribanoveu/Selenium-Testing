@@ -1,13 +1,12 @@
 package tests;
 
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.By;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import selenium.base.BaseTest;
-import selenium.helpers.*;
-import selenium.service.testng.RetryListener;
-import selenium.service.testng.TestErrorListener;
+import ru.cbgr.qa.base.BaseTest;
+import ru.cbgr.qa.helpers.Action;
+import ru.cbgr.qa.service.testng.RetryListener;
+import ru.cbgr.qa.service.testng.TestErrorListener;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,9 +23,9 @@ public class GoogleTests extends BaseTest {
 
     @Test(retryAnalyzer = RetryListener.class)
     public void searchSelenium() throws InterruptedException {
-        Navigate.openPage(URL);
 
-        Action.OneClick.click(By.xpath(SEARCH_BUTTON));
+
+        Action.OneClick.click(SEARCH_BUTTON);
         Thread.sleep(5000);
     }
 }

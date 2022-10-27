@@ -1,8 +1,8 @@
-package selenium.helpers;
+package ru.cbgr.qa.helpers;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
-import selenium.base.Driver;
+import ru.cbgr.qa.base.Driver;
 
 /** Класс для переключения окон */
 public class Switch {

@@ -1,11 +1,11 @@
-package selenium.helpers;
+package ru.cbgr.qa.helpers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
-import selenium.base.Driver;
+import ru.cbgr.qa.base.Driver;
 
 import java.io.File;
 import java.io.IOException;

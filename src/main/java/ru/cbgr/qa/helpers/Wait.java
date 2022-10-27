@@ -1,11 +1,11 @@
-package selenium.helpers;
+package ru.cbgr.qa.helpers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import selenium.base.Driver;
+import ru.cbgr.qa.base.Driver;
 
 import java.time.Duration;
 
@@ -20,14 +20,14 @@ public class Wait {
     }
 
 
-    public static void visibleAndClickable(By webElement) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(webElement));
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    public static void visibleAndClickable(String webElement) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement)));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(webElement)));
     }
 
     /** Ожидание наличия элемента по локатору */
-    public static void presenceOfElementLocated(By webElement) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(webElement));
+    public static void presenceOfElementLocated(String webElement) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(webElement)));
     }
 
     /** Ожидание появления текста в элементе */
@@ -41,8 +41,8 @@ public class Wait {
     }
 
     /** Ожидание кликабельности элемента по локатору */
-    public static void clickabilityOfElement(By webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    public static void clickabilityOfElement(String webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(webElement)));
     }
 
     /** Ожидание видимости элемента */
@@ -51,15 +51,15 @@ public class Wait {
     }
 
     /** Ожидание видимости элемента по локатору */
-    public static void visibilityOfElementLocated(By webElement) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(webElement));
+    public static void visibilityOfElementLocated(String webElement) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement)));
     }
 
     /** Ожидание появления в списке продуктов в первой позиции заданного продукта */
     @Deprecated
-    public static void firstWebElementMustBe(By webElement, String text) {
+    public static void firstWebElementMustBe(String webElement, String text) {
         wait.until((ExpectedCondition<Boolean>) webDriver ->
-                webDriver.findElement(webElement).getText().contains(text));
+                webDriver.findElement(By.xpath(webElement)).getText().contains(text));
     }
 
     /** Ожидание появления всплывающего алерта */

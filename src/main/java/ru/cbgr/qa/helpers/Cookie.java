@@ -1,7 +1,7 @@
-package selenium.helpers;
+package ru.cbgr.qa.helpers;
 
 import lombok.extern.slf4j.Slf4j;
-import selenium.base.Driver;
+import ru.cbgr.qa.base.Driver;
 
 /** Класс для работы с куки
  * author : egribanov

@@ -1,9 +1,9 @@
-package selenium.helpers;
+package ru.cbgr.qa.helpers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
-import selenium.base.Driver;
+import ru.cbgr.qa.base.Driver;
 
 /** Класс для взаимодействия с размером и положением окна */
 @Slf4j

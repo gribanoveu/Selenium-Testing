@@ -1,12 +1,12 @@
-package selenium.base;
+package ru.cbgr.qa.base;
 
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import selenium.enums.Browsers;
-import selenium.browser.Chrome;
-import selenium.browser.Edge;
-import selenium.browser.Firefox;
+import ru.cbgr.qa.enums.Browsers;
+import ru.cbgr.qa.browser.Chrome;
+import ru.cbgr.qa.browser.Edge;
+import ru.cbgr.qa.browser.Firefox;
 
 /** Класс для взаимодействия с вебдрайвером, реализует паттерн синглтон */
 @Slf4j

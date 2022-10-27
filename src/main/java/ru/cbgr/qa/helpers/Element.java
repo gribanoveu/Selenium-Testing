@@ -1,9 +1,8 @@
-package selenium.helpers;
+package ru.cbgr.qa.helpers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Rectangle;
-import org.openqa.selenium.WebElement;
-import selenium.base.Driver;
+import ru.cbgr.qa.base.Driver;
 
 public class Element {
 

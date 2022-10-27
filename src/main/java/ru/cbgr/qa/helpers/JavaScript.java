@@ -1,8 +1,8 @@
-package selenium.helpers;
+package ru.cbgr.qa.helpers;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import selenium.base.Driver;
+import ru.cbgr.qa.base.Driver;
 
 /** Класс для выполняния JavaScript скриптов */
 public class JavaScript {

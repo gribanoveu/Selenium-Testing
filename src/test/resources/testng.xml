@@ -2,8 +2,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Parent_Suite">
     <listeners>
-        <listener class-name="selenium.service.testng.ExecutionListener"/>
-        <listener class-name="selenium.service.testng.TestErrorListener"/>
+        <listener class-name="ru.cbgr.qa.service.testng.ExecutionListener"/>
+        <listener class-name="ru.cbgr.qa.service.testng.TestErrorListener"/>
     </listeners>
 
     <test name="ItestReporter">

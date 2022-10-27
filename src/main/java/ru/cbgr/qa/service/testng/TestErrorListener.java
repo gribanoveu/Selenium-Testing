@@ -1,9 +1,9 @@
-package selenium.service.testng;
+package ru.cbgr.qa.service.testng;
 
 import lombok.extern.slf4j.Slf4j;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import selenium.service.allure.AllureAttachments;
+import ru.cbgr.qa.service.allure.AllureAttachments;
 
 
 /**

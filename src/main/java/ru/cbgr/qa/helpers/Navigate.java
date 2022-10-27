@@ -1,7 +1,7 @@
-package selenium.helpers;
+package ru.cbgr.qa.helpers;
 
 
-import selenium.base.Driver;
+import ru.cbgr.qa.base.Driver;
 
 /** Класс для перемещения по страницам */
 public class Navigate {

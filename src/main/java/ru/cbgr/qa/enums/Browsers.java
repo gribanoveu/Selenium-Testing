@@ -1,4 +1,4 @@
-package selenium.enums;
+package ru.cbgr.qa.enums;
 
 /** Перечисление доступных браузеров */
 public enum Browsers {
