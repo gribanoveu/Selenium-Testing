@@ -16,7 +16,6 @@ import static ru.cbgr.qa.service.allure.AllureEnvironmentWriter.allureEnvironmen
 
 /** Класс для вызова методов прикрепления обьектов в отчет allure */
 public class AllureAttachments {
-
     /** прикрепляет текстовое сообщение в отчет */
     @Attachment(value = "{attachName}", type = "text/plain")
     public static String attachAsText(String attachName, String message) {

@@ -14,7 +14,6 @@ import ru.cbgr.qa.service.allure.AllureAttachments;
  **/
 @Slf4j
 public class TestErrorListener implements ITestListener{
-
     @Override
     public void onTestFailure(ITestResult result) {
         AllureAttachments.attachScreenshot("SCREENSHOT-FAIL");

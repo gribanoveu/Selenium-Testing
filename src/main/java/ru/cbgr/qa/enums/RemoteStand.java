@@ -1,7 +1,7 @@
 package ru.cbgr.qa.enums;
 
 public enum RemoteStand {
-    REMOTE_URL("http://localhost:4444/wd/hub/", "REMOTE"),
+    REMOTE_URL("localhost:4444", "REMOTE"),
     TEST("172.17.117.26:86/real", "TEST");
 
     private final String url;
@@ -13,7 +13,7 @@ public enum RemoteStand {
     }
 
     public String getRemoteUrl() {
-        return "http://" + url;
+        return "http://" + url + "/wd/hub/";
     }
 
     public String getUrl() {

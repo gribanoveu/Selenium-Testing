@@ -23,9 +23,6 @@ public class GoogleTests extends BaseTest {
 
     @Test(retryAnalyzer = RetryListener.class)
     public void searchSelenium() throws InterruptedException {
-
-
-        Action.OneClick.click(SEARCH_BUTTON);
         Thread.sleep(5000);
     }
 }

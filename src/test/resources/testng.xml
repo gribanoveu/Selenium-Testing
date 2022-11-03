@@ -9,6 +9,8 @@
     <test name="ItestReporter">
         <classes>
             <class name="tests.GoogleTests" />
+            <class name="tests.GoogleTests2" />
         </classes>
     </test>
+
 </suite>

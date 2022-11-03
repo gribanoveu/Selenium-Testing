@@ -11,14 +11,12 @@ import java.time.Duration;
 
 /** Класс для ожидания элементов */
 public class Wait {
-
     protected static WebDriverWait wait;
 
     /** Установка таймаута ожидания и интервал опроса */
     public static void initWait(Duration timeOut, Duration sleep) {
         wait = new WebDriverWait(Driver.getInstance(), timeOut, sleep);
     }
-
 
     public static void visibleAndClickable(String webElement) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement)));
@@ -65,5 +63,9 @@ public class Wait {
     /** Ожидание появления всплывающего алерта */
     public static void waitWhenAlertIsPresents() {
          wait.until(ExpectedConditions.alertIsPresent());
+    }
+
+    public static boolean isElementDisplayed(String webElement) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(webElement))).isDisplayed();
     }
 }

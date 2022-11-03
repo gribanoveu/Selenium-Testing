@@ -3,10 +3,7 @@ package ru.cbgr.qa.base;
 
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import org.testng.annotations.AfterGroups;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 import ru.cbgr.qa.enums.RemoteStand;
 import ru.cbgr.qa.helpers.Action;
 import ru.cbgr.qa.helpers.JavaScript;
@@ -17,22 +14,31 @@ import ru.cbgr.qa.enums.Browsers;
 
 import java.time.Duration;
 
-/** Базовый класс для всех тестов.
- * При создании нового теста следует наследоваться от данного класса.
- * Аннотация @Slf4j позволяет использовать логгирование путем вызова метода log.info(), etc */
+/**
+ * <br> Базовый класс для всех тестов.
+ * <br> При создании нового теста следует наследоваться от данного класса.
+ * <br> Аннотация @Slf4j позволяет использовать логирование путем вызова метода log.info(), etc.
+ * <br> Используются проперти:
+ *
+ * <br> <strong> -Dbrowser </strong>
+ * <br> указание запуска браузера в maven.
+ * <br> При передаче неверного значения используется значение по умолчанию (chrome).
+ * <br> -Duser
+ * <br> Указывается юзер для запуска в maven.
+ * <br> Без указания происходит логин юзером по умолчанию (AUTOWEB_TEST).
+ * <br> -Dstand
+ * <br> Указывается стенд для запуска в maven.
+ * <br> По умолчанию тесты запускаются на стенде TEST см. RemoteStand.
+ * <br> -Dremote
+ * <br> Указывается запускать ли тесты удаленно.
+ * <br> По умолчанию выключено.
+ *
+ * */
 @Slf4j
 public abstract class BaseTest {
-
-    /** Получение проперти для указания запуска браузера в maven -Dbrowser=firefox.
-     * При передаче неверного значения используется значение по умолчанию */
     String browser = System.getProperty("browser", "chrome").toLowerCase();
-
     public static final String USER = System.getProperty("user", "AUTOWEB_TEST");
     public static final String STAND = System.getProperty("stand", "test");
-
-     /** Получение проперти для указания запускать ли тесты на удаленной машине -Dremote=true.
-      * Принимает только true или false значения.
-      * При передаче неверного значения используется значение по умолчанию */
     String isRemoteDriver = System.getProperty("remote", "false");
 
     // инициализация ожиданий
@@ -42,7 +48,7 @@ public abstract class BaseTest {
     /** Метод инициализации вебдрайвера, запускается перед выполнением тестов.
      * Получает название браузера.
      * Получает указание запускать ли удаленный вебдрайвер */
-    @BeforeTest
+    @BeforeSuite
     public void runBrowser() {
         Driver.setupDriver(Browsers.fromString(browser), Boolean.valueOf(isRemoteDriver));
         Wait.initWait(DURATION_TIMEOUT, DURATION_SLEEP);
@@ -51,8 +57,8 @@ public abstract class BaseTest {
         log.info("Драйвер стартовал!");
     }
 
-    /** Метод закрытия экземпляра ведбрайвера, выполняется после всех тестов */
-    @AfterTest
+    /** Метод закрытия экземпляра драйвера, выполняется после всех тестов */
+    @AfterSuite
     public void setDown() {
         if(Driver.getInstance() != null) {
             Driver.getInstance().quit();

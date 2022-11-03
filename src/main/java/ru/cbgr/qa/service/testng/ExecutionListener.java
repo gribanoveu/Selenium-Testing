@@ -13,7 +13,6 @@ import org.testng.IExecutionListener;
  **/
 @Slf4j
 public class ExecutionListener implements IExecutionListener {
-
     long startTime;
     long endTime;
 

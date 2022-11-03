@@ -1,7 +1,9 @@
 package ru.cbgr.qa.helpers;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.cbgr.qa.base.Driver;
@@ -12,9 +14,9 @@ import ru.cbgr.qa.service.turbo.TurboNavigation;
  * @version 27.10.2022
  * @link egribanov@cbgr.ru
  */
+@Slf4j
+@SuppressWarnings("StatementWithEmptyBody")
 public class MethodT {
-    private static final Logger log = LoggerFactory.getLogger(MethodT.class);
-
     public static void printElementCssAndAttributeProperty(String locator, String atribute) {
         String getCSS = Driver.getInstance().findElement(By.xpath(locator)).getCssValue(atribute);
         String getAttribute = Driver.getInstance().findElement(By.xpath(locator)).getAttribute(atribute);
