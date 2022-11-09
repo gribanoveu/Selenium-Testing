@@ -80,7 +80,7 @@ public abstract class BaseTest {
 
     @Step("Проверка что вход в систему произведен")
     protected void checkLoginInSystem() {
-        String currentUrl = Driver.getInstance().getCurrentUrl();
+        var currentUrl = Driver.getInstance().getCurrentUrl();
         // если драйвер отсутствует запустить заново
         if (Driver.getInstance() == null) runBrowser();
         else Driver.getInstance().navigate().refresh();

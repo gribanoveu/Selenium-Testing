@@ -82,7 +82,7 @@ public class Element {
     }
 
     public static int getCSSValueAsInt(String locator, String CSS) {
-        String getElementHeightAsString = getCSSValue(locator, CSS);
+        var getElementHeightAsString = getCSSValue(locator, CSS);
         log.info("Значение атрибута " + CSS + ": " + getElementHeightAsString);
         return Integer.parseInt(getElementHeightAsString.replaceAll("[^0-9]",""));
     }

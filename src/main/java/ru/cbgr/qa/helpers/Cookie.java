@@ -8,12 +8,13 @@ import ru.cbgr.qa.base.Driver;
  * created : 16.03.2022, 22:09
  **/
 @Slf4j
+@SuppressWarnings("unused")
 public class Cookie {
 
     /** Логирование доступных куки */
     public static void printBasicCookieInfo() {
         log.info("Получены следующие куки (имя/значение): ");
-        for (org.openqa.selenium.Cookie cookie: Driver.getInstance().manage().getCookies()) {
+        for (var cookie: Driver.getInstance().manage().getCookies()) {
             log.info(" - " + cookie.getName() + " / " + cookie.getValue());
         }
         log.info("Конец полученных куки ");
@@ -21,7 +22,7 @@ public class Cookie {
 
     /** Получение значения куки по его имени */
     public static String getValueNamedCookie(String cookieName) {
-        String cookieValue = String.valueOf(Driver.getInstance().manage().getCookieNamed(cookieName).getValue());
+        var cookieValue = String.valueOf(Driver.getInstance().manage().getCookieNamed(cookieName).getValue());
         log.info("Cookie: " + cookieName + " имеет значение: " + cookieValue);
         return cookieValue;
     }

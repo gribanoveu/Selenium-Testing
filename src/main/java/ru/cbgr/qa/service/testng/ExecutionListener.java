@@ -24,7 +24,7 @@ public class ExecutionListener implements IExecutionListener {
     @Override
     public void onExecutionFinish() {
         endTime = System.currentTimeMillis();
-        float sec = (endTime - startTime) / 1000F;
+        var sec = (endTime - startTime) / 1000F;
         log.info("Время затраченное на выполнение тестов: " + sec + " секунд");
     }
 }

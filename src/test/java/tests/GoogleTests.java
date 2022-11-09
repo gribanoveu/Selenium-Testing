@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ru.cbgr.qa.base.BaseTest;
-import ru.cbgr.qa.element.Action;
+import ru.cbgr.qa.helpers.Action;
 import ru.cbgr.qa.service.testng.RetryListener;
 import ru.cbgr.qa.service.testng.TestErrorListener;
 

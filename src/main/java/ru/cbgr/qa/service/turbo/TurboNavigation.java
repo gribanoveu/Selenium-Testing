@@ -3,15 +3,12 @@ package ru.cbgr.qa.service.turbo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
 import ru.cbgr.qa.base.Driver;
-import ru.cbgr.qa.element.Action;
+import ru.cbgr.qa.helpers.Action;
 
 import java.time.Duration;
-import java.util.List;
 
 /**
  * @author Evgeny Gribanov
@@ -33,7 +30,7 @@ public class TurboNavigation {
     }
 
     public static boolean isElementClickableIgnoreExceptions(By by) {
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getInstance())
+        var wait = new FluentWait<WebDriver>(Driver.getInstance())
                 .withTimeout(Duration.ofSeconds(1))
                 .pollingEvery(Duration.ofMillis(50))
                 .ignoring(NoSuchElementException.class);
@@ -62,7 +59,7 @@ public class TurboNavigation {
      * Поиск элемента как списка если чекбокс найден и включен true, иначе пробуем опять */
     private static boolean isElementFoundDisplayedEnabled(By by) {
         try {
-            List<WebElement> element = Driver.getInstance().findElements(by);
+            var element = Driver.getInstance().findElements(by);
             return !element.isEmpty()
                     && element.get(element.size() - 1).isDisplayed()
                     && element.get(element.size() - 1).isEnabled();

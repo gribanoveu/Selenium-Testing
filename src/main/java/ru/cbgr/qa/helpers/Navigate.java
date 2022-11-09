@@ -2,7 +2,6 @@ package ru.cbgr.qa.helpers;
 
 
 import ru.cbgr.qa.base.Driver;
-import ru.cbgr.qa.element.Action;
 
 import static ru.cbgr.qa.service.turbo.TurboNavigation.isMaskClickable;
 

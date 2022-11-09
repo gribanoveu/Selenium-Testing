@@ -16,9 +16,10 @@
         </encoder>
     </appender>
 
-    <logger name="com.baeldung.logback.tests" level="INFO" additivity="false">
+<!--    Для сохранения логов файл расcкоментироать аппендер FILE-->
+    <logger name="turbo-logger" level="INFO" additivity="false">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
+<!--        <appender-ref ref="FILE" />-->
     </logger>
 
     <root level="info">

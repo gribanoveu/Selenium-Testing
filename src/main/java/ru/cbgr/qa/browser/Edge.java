@@ -23,16 +23,16 @@ public class Edge {
         WebDriverManager.edgedriver().setup();
 
         // установка состояния браузера
-        EdgeOptions options = new EdgeOptions();
+        var options = new EdgeOptions();
         options.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
         options.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, PageLoadStrategy.NORMAL);
 
         // установка аргументов запуска
         options.addArguments("--incognito");
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        var capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", "edge");
-        capabilities.setCapability("browserVersion", "98.0");
+        capabilities.setCapability("browserVersion", "99.0");
         capabilities.setCapability(EdgeOptions.CAPABILITY, options);
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
