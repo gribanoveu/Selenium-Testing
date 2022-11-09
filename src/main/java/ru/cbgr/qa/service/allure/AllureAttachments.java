@@ -5,16 +5,15 @@ import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import ru.cbgr.qa.base.Driver;
-import ru.cbgr.qa.helpers.MethodT;
 import ru.cbgr.qa.enums.RemoteStand;
-
+import ru.cbgr.qa.helpers.Element;
 
 import java.nio.charset.StandardCharsets;
 
 import static ru.cbgr.qa.base.BaseTest.USER;
-import static ru.cbgr.qa.service.allure.AllureEnvironmentWriter.allureEnvironmentWriter;
 
 /** Класс для вызова методов прикрепления обьектов в отчет allure */
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class AllureAttachments {
     /** прикрепляет текстовое сообщение в отчет */
     @Attachment(value = "{attachName}", type = "text/plain")
@@ -40,7 +39,7 @@ public class AllureAttachments {
                         .put("Browser", Driver.getInstance().getCapabilities().getBrowserName().toUpperCase())
                         .put("Version", Driver.getInstance().getCapabilities().getBrowserVersion())
                         .put("Stand", RemoteStand.REMOTE_URL.getUrl())
-                        .put("Stand VERSION", MethodT.getElementTextValue("//div[contains(@class,'version')]"))
+                        .put("Stand VERSION", Element.getText("//div[contains(@class,'version')]"))
                         .put("User", USER.toUpperCase())
                         .build());
     }

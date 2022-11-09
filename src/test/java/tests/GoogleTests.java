@@ -4,11 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ru.cbgr.qa.base.BaseTest;
-import ru.cbgr.qa.helpers.Action;
+import ru.cbgr.qa.element.Action;
 import ru.cbgr.qa.service.testng.RetryListener;
 import ru.cbgr.qa.service.testng.TestErrorListener;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 /**
@@ -18,11 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Slf4j
 @Listeners(TestErrorListener.class)
 public class GoogleTests extends BaseTest {
-    private static final String URL = "https://www.google.ru/";
-    public static final String SEARCH_BUTTON = "//*[text()='Картинки']";
 
     @Test(retryAnalyzer = RetryListener.class)
     public void searchSelenium() throws InterruptedException {
+        Action.byXpath("//div[@data-testid='main-menu-button']").contextClick();
         Thread.sleep(5000);
     }
 }

@@ -2,11 +2,13 @@ package ru.cbgr.qa.service.turbo;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import ru.cbgr.qa.base.Driver;
-import ru.cbgr.qa.helpers.Action;
+import ru.cbgr.qa.element.Action;
 
 import java.time.Duration;
 import java.util.List;
@@ -17,21 +19,25 @@ import java.util.List;
  * @link egribanov@cbgr.ru
  */
 public class TurboNavigation {
-    private static final String CLOSE_TAB_BUTTON_LOCATOR = "//*/span[@data-testid='tab-bar__tab-icon']";
     public static final String INDICATOR_LOCATOR = "//*[@id='indicator']/div";
-    public static final String LEFT_ARROW_LOCATOR = "//*[@data-testid='button' and @data-nav='prev']";
     public static final String TAB_BAR = "//div[@data-testid='tab-bar__tab']";
     public static final String CLOSE_ALL_TABS_BUTTON = "//span[text()='Закрыть все' and contains(@data-testid,'context-menu_caption')]";
+    public static final String LOCATOR_LOGIN_USER_BOX = "//*[@data-testid='user']";
+    public static final String LOCATOR_LOGIN_BUTTON = "//*[@data-testid='button_caption']";
+    public static final String LOCATOR_LOGIN_CHECK_BOX = "//div[contains(text(),'Отключить пользователя')]";
 
     // отсутствие маски на элементе, нужна перед взаимодействиями с элементами и ассертами
     // маска присутствует во время обновления состояния элемента
     public static boolean isMaskClickable() {
-        return isClickable(By.xpath(INDICATOR_LOCATOR));
+        return isElementClickableIgnoreExceptions(By.xpath(INDICATOR_LOCATOR));
     }
 
-    public static boolean isClickable(By by) {
+    public static boolean isElementClickableIgnoreExceptions(By by) {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getInstance())
+                .withTimeout(Duration.ofSeconds(1))
+                .pollingEvery(Duration.ofMillis(50))
+                .ignoring(NoSuchElementException.class);
         try {
-            WebDriverWait wait = new WebDriverWait(Driver.getInstance(), Duration.ofSeconds(1), Duration.ofMillis(50));
             wait.until(ExpectedConditions.elementToBeClickable(by));
             return true;
         } catch (Exception ignore) {
@@ -39,46 +45,34 @@ public class TurboNavigation {
         }
     }
 
-    public static boolean isElementPresent(By by) {
-        try {
-            while (isMaskClickable()) {}
-            Driver.getInstance().findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
     public static void clickToLoginInAuthPage(String LOGIN) {
-        String locatorUser = "//*[@data-testid='user']";
-        String locatorLoginButton = "//*[@data-testid='button_caption']";
-        String checkBoxLocator = "//*/div[contains(text(),'Отключить пользователя и продолжить')]";
-        String loginButtonLocator = "//*[@data-testid='button_caption']";
-
-        Action.TextBox.clearAndSendText(locatorUser, LOGIN);
-        Action.OneClick.click(locatorLoginButton);
+        Action.byXpath(LOCATOR_LOGIN_USER_BOX).click().clear().enterText(LOGIN);
+        Action.byXpath(LOCATOR_LOGIN_BUTTON).click();
 
         while (TurboNavigation.isMaskClickable()) {}
 
-        if (isElementFoundDisplayedEnabled(By.xpath("//*/div[contains(text(),'Отключить пользователя и продолжить')]"))) {
-            Action.OneClick.click(checkBoxLocator);
-            Action.OneClick.click(loginButtonLocator);
+        if (isElementFoundDisplayedEnabled(By.xpath(LOCATOR_LOGIN_CHECK_BOX))) {
+            Action.byXpath(LOCATOR_LOGIN_CHECK_BOX).click();
+            Action.byXpath(TurboNavigation.LOCATOR_LOGIN_BUTTON).click();
             while (TurboNavigation.isMaskClickable()) {}
         }
     }
 
-    /** Если элемент отображается и чекбокс не нажат, вернуть true, иначе false */
+    /** Если элемент отображается и чекбокс не нажат, вернуть true, иначе false
+     * Поиск элемента как списка если чекбокс найден и включен true, иначе пробуем опять */
     private static boolean isElementFoundDisplayedEnabled(By by) {
         try {
-            List<WebElement> e = Driver.getInstance().findElements(by);
-            return !e.isEmpty() && e.get(e.size() - 1).isDisplayed() && e.get(e.size() - 1).isEnabled();
+            List<WebElement> element = Driver.getInstance().findElements(by);
+            return !element.isEmpty()
+                    && element.get(element.size() - 1).isDisplayed()
+                    && element.get(element.size() - 1).isEnabled();
         } catch (Exception ignored) {}
         return false;
     }
 
     // закрытие по нажатию правой клавиши может работать нестабильно или не работать на старых версиях
     public static void closeOpenTabs() {
-        Action.OneClick.contextClick(TAB_BAR);
-        Action.OneClick.click(CLOSE_ALL_TABS_BUTTON);
+        Action.byXpath(TAB_BAR).contextClick();
+        Action.byXpath(CLOSE_ALL_TABS_BUTTON).click();
     }
 }

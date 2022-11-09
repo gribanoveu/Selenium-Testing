@@ -3,14 +3,16 @@ package ru.cbgr.qa.base;
 
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterGroups;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import ru.cbgr.qa.enums.Browsers;
 import ru.cbgr.qa.enums.RemoteStand;
-import ru.cbgr.qa.helpers.Action;
 import ru.cbgr.qa.helpers.JavaScript;
 import ru.cbgr.qa.helpers.Wait;
 import ru.cbgr.qa.service.allure.AllureAttachments;
 import ru.cbgr.qa.service.turbo.TurboNavigation;
-import ru.cbgr.qa.enums.Browsers;
 
 import java.time.Duration;
 
@@ -32,7 +34,6 @@ import java.time.Duration;
  * <br> -Dremote
  * <br> Указывается запускать ли тесты удаленно.
  * <br> По умолчанию выключено.
- *
  * */
 @Slf4j
 public abstract class BaseTest {
@@ -53,7 +54,6 @@ public abstract class BaseTest {
         Driver.setupDriver(Browsers.fromString(browser), Boolean.valueOf(isRemoteDriver));
         Wait.initWait(DURATION_TIMEOUT, DURATION_SLEEP);
         JavaScript.initJS();
-        Action.initActions();
         log.info("Драйвер стартовал!");
     }
 
