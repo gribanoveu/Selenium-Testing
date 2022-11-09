@@ -20,26 +20,26 @@
 
         <!-- DEPENDENCIES -->
         <!-- selenium -->
-        <selenium.version>4.1.2</selenium.version>
-        <webdrivermanager.version>5.1.0</webdrivermanager.version>
+        <selenium.version>4.5.3</selenium.version>
+        <webdrivermanager.version>5.3.0</webdrivermanager.version>
 
         <!-- asserts -->
-        <assertj.version>3.22.0</assertj.version>
+        <assertj.version>3.23.1</assertj.version>
 
         <!-- tests -->
         <!-- в версии 7.5 не отображаются шаги в аллюр, использовать 7.4  -->
         <testng.version>7.4.0</testng.version>
 
         <!-- logging -->
-        <logback.version>1.2.10</logback.version>
+        <logback.version>1.4.4</logback.version>
 
         <!-- report -->
         <aspectj.version>1.9.7</aspectj.version>
-        <allure.version>2.17.3</allure.version>
+        <allure.version>2.19.0</allure.version>
         <allure-maven-plugin.version>2.11.2</allure-maven-plugin.version>
 
         <!-- other -->
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
 
     <dependencies>
