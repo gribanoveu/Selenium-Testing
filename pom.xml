@@ -20,8 +20,8 @@
 
         <!-- DEPENDENCIES -->
         <!-- selenium -->
-        <selenium.version>4.5.3</selenium.version>
-        <webdrivermanager.version>5.3.0</webdrivermanager.version>
+        <selenium.version>4.6.0</selenium.version>
+        <webdrivermanager.version>3.2.0</webdrivermanager.version>
 
         <!-- asserts -->
         <assertj.version>3.23.1</assertj.version>
@@ -29,24 +29,96 @@
         <!-- tests -->
         <!-- в версии 7.5 не отображаются шаги в аллюр, использовать 7.4  -->
         <testng.version>7.4.0</testng.version>
+        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
 
         <!-- logging -->
         <logback.version>1.4.4</logback.version>
 
         <!-- report -->
         <aspectj.version>1.9.7</aspectj.version>
-        <allure.version>2.19.0</allure.version>
+        <allure.version>2.20.0</allure.version>
         <allure-maven-plugin.version>2.11.2</allure-maven-plugin.version>
 
         <!-- other -->
         <lombok.version>1.18.24</lombok.version>
     </properties>
 
+    <dependencyManagement>
+        <!-- используется для контроля версий у транзитивных зависимостей в подключенных библиотеках-->
+        <dependencies>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>5.1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.11.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>31.1-jre</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.9.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>1.15</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-compress</artifactId>
+                <version>1.21</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.13</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>1.15.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.webjars</groupId>
+                <artifactId>jquery</artifactId>
+                <version>3.6.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
     <dependencies>
         <dependency>
-            <!-- плагин для общения с браузером (основа проекта)  -->
+            <!-- плагин для общения с браузером (основа проекта) support
+            т.к в selenium-java много лишнего хлама  -->
             <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
+            <artifactId>selenium-support</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <!-- работы с браузером chrome (отсутствует в selenium-support) -->
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <!-- работы с браузером edge (отсутствует в selenium-support) -->
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-edge-driver</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+        <dependency>
+            <!-- работы с браузером firefox (отсутствует в selenium-support) -->
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-firefox-driver</artifactId>
             <version>${selenium.version}</version>
         </dependency>
         <dependency>
@@ -60,6 +132,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
+
         </dependency>
         <dependency>
             <!-- плагин для использования ассертов  -->
@@ -86,7 +159,7 @@
             <version>${allure.version}</version>
         </dependency>
         <dependency>
-            <!-- плагин для прикрипления аттачментов в отчет allure  -->
+            <!-- плагин для прикрепления аттачментов в отчет allure  -->
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-attachments</artifactId>
             <version>${allure.version}</version>
@@ -115,6 +188,10 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
+
                 </configuration>
                 <dependencies>
                     <dependency>
